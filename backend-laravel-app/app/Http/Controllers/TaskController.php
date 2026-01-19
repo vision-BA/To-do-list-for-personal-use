@@ -24,6 +24,7 @@ class TaskController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'completed' => 'boolean',
+            'category_id' => 'nullable|exists:categories,id',
         ]);
 
         $task = $request->user()->tasks()->create($validated);
@@ -58,6 +59,7 @@ class TaskController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'completed' => 'boolean',
+            'category_id' => 'nullable|exists:categories,id',
         ]);
 
         $task->update($validated);
