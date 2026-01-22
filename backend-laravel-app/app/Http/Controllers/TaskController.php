@@ -11,9 +11,7 @@ class TaskController extends Controller
 {
     public function index(Request $request)
     {
-        $tasks = $request->user()
-            ->tasks()
-            ->with('category')
+        $tasks = Task::with('category')
             ->latest()
             ->paginate(20);
 
