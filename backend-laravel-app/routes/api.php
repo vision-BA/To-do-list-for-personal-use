@@ -9,7 +9,5 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::middleware('auth:sanctum')->group(function () {
-    Route::apiResource('tasks', TaskController::class);
-    Route::apiResource('categories', CategoryController::class);
-});
+Route::apiResource('tasks', TaskController::class);
+Route::apiResource('categories', CategoryController::class);
