@@ -2,83 +2,59 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreTaskRequest;
+use App\Http\Resources\TaskResource;
 use App\Models\Task;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(Request $request)
     {
-        return $request->user()->tasks;
+        $tasks = $request->user()
+            ->tasks()
+            ->with('category')
+            ->latest()
+            ->paginate(20);
+
+        return TaskResource::collection($tasks);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(StoreTaskRequest $request)
     {
-        $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'completed' => 'boolean',
-            'category_id' => 'nullable|exists:categories,id',
-        ]);
+        $task = $request->user()->tasks()->create($request->validated());
 
-        $task = $request->user()->tasks()->create($validated);
-
-        return response()->json($task, 201);
+        return (new TaskResource($task->load('category')))->response()->setStatusCode(201);
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Request $request, Task $task)
     {
-        // Ensure the task belongs to the authenticated user
         if ($task->user_id !== $request->user()->id) {
-            return response()->json(['message' => 'Unauthorized'], 403);
+            abort(403);
         }
 
-        return $task;
+        return new TaskResource($task->load('category'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Task $task)
+    public function update(StoreTaskRequest $request, Task $task)
     {
-        // Ensure the task belongs to the authenticated user
         if ($task->user_id !== $request->user()->id) {
-            return response()->json(['message' => 'Unauthorized'], 403);
+            abort(403);
         }
 
-        $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'completed' => 'boolean',
-            'category_id' => 'nullable|exists:categories,id',
-        ]);
+        $task->update($request->validated());
 
-        $task->update($validated);
-
-        return response()->json($task);
+        return new TaskResource($task->fresh()->load('category'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Request $request, Task $task)
     {
-        // Ensure the task belongs to the authenticated user
         if ($task->user_id !== $request->user()->id) {
-            return response()->json(['message' => 'Unauthorized'], 403);
+            abort(403);
         }
 
         $task->delete();
 
-        return response()->json(['message' => 'Task deleted']);
+        return response()->noContent();
     }
 }
