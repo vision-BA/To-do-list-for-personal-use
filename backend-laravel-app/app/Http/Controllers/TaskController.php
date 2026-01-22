@@ -20,26 +20,18 @@ class TaskController extends Controller
 
     public function store(StoreTaskRequest $request)
     {
-        $task = $request->user()->tasks()->create($request->validated());
+        $task = Task::create($request->validated());
 
         return (new TaskResource($task->load('category')))->response()->setStatusCode(201);
     }
 
     public function show(Request $request, Task $task)
     {
-        if ($task->user_id !== $request->user()->id) {
-            abort(403);
-        }
-
         return new TaskResource($task->load('category'));
     }
 
     public function update(StoreTaskRequest $request, Task $task)
     {
-        if ($task->user_id !== $request->user()->id) {
-            abort(403);
-        }
-
         $task->update($request->validated());
 
         return new TaskResource($task->fresh()->load('category'));
@@ -47,10 +39,6 @@ class TaskController extends Controller
 
     public function destroy(Request $request, Task $task)
     {
-        if ($task->user_id !== $request->user()->id) {
-            abort(403);
-        }
-
         $task->delete();
 
         return response()->noContent();
