@@ -9,6 +9,8 @@ return array(
     'App\\Http\\Controllers\\CategoryController' => $baseDir . '/backend-laravel-app/app/Http/Controllers/CategoryController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/backend-laravel-app/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\TaskController' => $baseDir . '/backend-laravel-app/app/Http/Controllers/TaskController.php',
+    'App\\Http\\Requests\\StoreTaskRequest' => $baseDir . '/backend-laravel-app/app/Http/Requests/StoreTaskRequest.php',
+    'App\\Http\\Resources\\TaskResource' => $baseDir . '/backend-laravel-app/app/Http/Resources/TaskResource.php',
     'App\\Models\\Category' => $baseDir . '/backend-laravel-app/app/Models/Category.php',
     'App\\Models\\Task' => $baseDir . '/backend-laravel-app/app/Models/Task.php',
     'App\\Models\\User' => $baseDir . '/backend-laravel-app/app/Models/User.php',

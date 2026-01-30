@@ -3,7 +3,7 @@
         'name' => 'vision-ba/to-do-list-for-personal-use',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '05707e55a918bb2429a169ffb947af4048f34be0',
+        'reference' => 'a10a6b0a842641bf586d72b5de906be7c992c2ee',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -256,7 +256,7 @@
         'vision-ba/to-do-list-for-personal-use' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '05707e55a918bb2429a169ffb947af4048f34be0',
+            'reference' => 'a10a6b0a842641bf586d72b5de906be7c992c2ee',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

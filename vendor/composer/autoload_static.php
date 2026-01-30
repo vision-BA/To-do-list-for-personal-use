@@ -45,6 +45,8 @@ class ComposerStaticInite4dc14bcf65cfb7956a9dd2839b5de08
         'App\\Http\\Controllers\\CategoryController' => __DIR__ . '/../..' . '/backend-laravel-app/app/Http/Controllers/CategoryController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/backend-laravel-app/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\TaskController' => __DIR__ . '/../..' . '/backend-laravel-app/app/Http/Controllers/TaskController.php',
+        'App\\Http\\Requests\\StoreTaskRequest' => __DIR__ . '/../..' . '/backend-laravel-app/app/Http/Requests/StoreTaskRequest.php',
+        'App\\Http\\Resources\\TaskResource' => __DIR__ . '/../..' . '/backend-laravel-app/app/Http/Resources/TaskResource.php',
         'App\\Models\\Category' => __DIR__ . '/../..' . '/backend-laravel-app/app/Models/Category.php',
         'App\\Models\\Task' => __DIR__ . '/../..' . '/backend-laravel-app/app/Models/Task.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/backend-laravel-app/app/Models/User.php',
