@@ -9,7 +9,11 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600,700" rel="stylesheet" />
 
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
+            @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @else
+            <script src="https://cdn.tailwindcss.com"></script>
+        @endif
     </head>
     <body class="bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-900 text-white">
         <div class="min-h-screen">
